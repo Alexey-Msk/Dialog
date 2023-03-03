@@ -1,0 +1,35 @@
+.myModalBlocker {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 9999;
+}
+
+.myDialog {
+	--width: 200px;
+	--height: 100px;
+	position: fixed;
+	width: var(--width);
+	height: var(--height);
+	left: max(10px, calc(50vw - var(--width) / 2));
+	top: max(10px, calc(33vh - var(--height) / 2));
+	background-color: #444;
+	border: 1px solid black;
+	box-shadow: 0 0 7px black;
+	font-size: 11pt;
+	padding: 10px;
+	z-index: 9000;
+}
+
+.myDialog button {
+	background-color: rgba(255, 255, 255, 0.7);
+	color: black;
+	border: 1px solid black;
+	border-radius: 3px;
+	position: absolute;
+	width: 100px;
+	bottom: 10px;
+	left: calc(50% - 50px);
+}
