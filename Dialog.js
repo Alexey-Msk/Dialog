@@ -1,3 +1,4 @@
+/** Диалоговое окно. */
 class Dialog {
 
 	static #isActive = false;
