@@ -23,13 +23,19 @@
 	z-index: 9000;
 }
 
+.myDialog > .buttonsContainer {
+	position: absolute;
+	bottom: 10px;
+	width: calc(100% - 20px);
+	display: flex;
+	justify-content: center;
+	column-gap: 10px;
+}
+
 .myDialog button {
 	background-color: rgba(255, 255, 255, 0.7);
 	color: black;
 	border: 1px solid black;
 	border-radius: 3px;
-	position: absolute;
 	width: 100px;
-	bottom: 10px;
-	left: calc(50% - 50px);
 }

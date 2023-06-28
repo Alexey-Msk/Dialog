@@ -43,9 +43,12 @@ class Dialog {
 
 		let buttonsCode = "", styleCode = "";
 
-		if (buttons)
+		if (buttons) {
+			buttonsCode = '<div class="buttonsContainer">';
 			for (let key in buttons)
 				buttonsCode += `<button data-value="${key}">${buttons[key]}</button>`;
+			buttonsCode += '</div>';
+		}
 
 		if (width || height) {
 			let styles= [];
