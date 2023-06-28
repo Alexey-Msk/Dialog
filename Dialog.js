@@ -76,9 +76,9 @@ class Dialog {
 		let target = event.target;
 		if (target.closest(".myDialog, .myModalDialog")) {
 			if (target.tagName == "BUTTON") {
-				Dialog.hide();
 				if (Dialog.#callback)
 					Dialog.#callback(target.dataset.value);
+				Dialog.hide();
 			}
 		}
 		else if (!Dialog.#isModal)
