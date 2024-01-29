@@ -68,19 +68,19 @@ class Dialog {
 			html = `<div class="${this.modalBlockerClass}">${html}</div>`;
 
 		document.body.insertAdjacentHTML("beforeend", html);
-		document.addEventListener("click", this.#documentClickHandler);
+		setTimeout(() => document.addEventListener("click", this.#documentClickHandler), 0);
 		this.#isActive = true;
 	}
 
 	/** Закрывает диалог. */
 	static hide() {
 		if (!this.#isActive) return;
-		document.querySelector("." + this.#isModal ? this.modalBlockerClass : this.dialogClass).remove();
+		document.querySelector("." + (this.#isModal ? this.modalBlockerClass : this.dialogClass)).remove();
 		document.removeEventListener("click", this.#documentClickHandler);
 		this.#isActive = false;
 	}
 
-	static #documentClickHandler(event) {
+	static #documentClickHandler = (event) => {
 		let target = event.target;
 		if (target.closest("." + this.dialogClass)) {
 			if (target.tagName == "BUTTON") {
@@ -91,5 +91,5 @@ class Dialog {
 		}
 		else if (!Dialog.#isModal)
 			Dialog.hide();
-	}
+	};
 }
