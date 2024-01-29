@@ -20,6 +20,7 @@ class Dialog {
 
 	/**
 	 * Показывает диалог.
+	 * @param {string} id Значение атрибута id.
 	 * @param {boolean} modal Определяет, должен ли диалог быть модальным.
 	 * @param {string} content Содержимое диалога.
 	 * @param {?string} header Текст заголовка или null для создания диалога без заголовка.
@@ -30,7 +31,7 @@ class Dialog {
 	 * @param {number} width Ширина окна.
 	 * @param {number} height Высота окна.
 	 */
-	static show(modal, content, header, buttons, callback, width, height) {
+	static show(id, modal, content, header, buttons, callback, width, height) {
 		if (typeof modal != "boolean")
 			throw new TypeError("Параметр modal должен быть типа boolean.");
 		if (buttons && typeof buttons != "object")
@@ -72,7 +73,8 @@ class Dialog {
 			styleCode = ` style="${styles.join(" ")}"`;
 		}
 
-		let html = `<div class="${this.dialogClass}"${styleCode}>${headerCode}<main>${content}${buttonsCode}</main></div>`;
+		let idAttr = id ? `id="${id}"` : "";
+		let html = `<div ${idAttr} class="${this.dialogClass}"${styleCode}>${headerCode}<main>${content}${buttonsCode}</main></div>`;
 		if (modal)
 			html = `<div class="${this.modalBlockerClass}">${html}</div>`;
 
