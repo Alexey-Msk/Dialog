@@ -5,6 +5,10 @@ class Dialog {
 	static #isModal = false;
 	static #callback = null;
 
+	static dialogClass = "myDialog";
+	static modalBlockerClass = "myModalBlocker";
+	static buttonsContainerClass = "buttonsContainer";
+
 	/** Возвращает логическое значение, указывающее, открыт ли диалог в данный момент. */
 	static get isActive() {
 		return this.#isActive;
@@ -44,7 +48,7 @@ class Dialog {
 		let buttonsCode = "", styleCode = "";
 
 		if (buttons) {
-			buttonsCode = '<div class="buttonsContainer">';
+			buttonsCode = `<div class="${this.buttonsContainerClass}">`;
 			for (let key in buttons)
 				buttonsCode += `<button data-value="${key}">${buttons[key]}</button>`;
 			buttonsCode += '</div>';
@@ -59,9 +63,9 @@ class Dialog {
 			styleCode = ` style="${styles.join(" ")}"`;
 		}
 
-		let html = `<div class="myDialog"${styleCode}>${content}${buttonsCode}</div>`;
+		let html = `<div class="${this.dialogClass}"${styleCode}>${content}${buttonsCode}</div>`;
 		if (modal)
-			html = `<div class="myModalBlocker">${html}</div>`;
+			html = `<div class="${this.modalBlockerClass}">${html}</div>`;
 
 		document.body.insertAdjacentHTML("beforeend", html);
 		document.addEventListener("click", this.#documentClickHandler);
@@ -71,14 +75,14 @@ class Dialog {
 	/** Закрывает диалог. */
 	static hide() {
 		if (!this.#isActive) return;
-		document.querySelector(this.#isModal ? ".myModalBlocker" : ".myDialog").remove();
+		document.querySelector("." + this.#isModal ? this.modalBlockerClass : this.dialogClass).remove();
 		document.removeEventListener("click", this.#documentClickHandler);
 		this.#isActive = false;
 	}
 
 	static #documentClickHandler(event) {
 		let target = event.target;
-		if (target.closest(".myDialog, .myModalDialog")) {
+		if (target.closest("." + this.dialogClass)) {
 			if (target.tagName == "BUTTON") {
 				if (Dialog.#callback)
 					Dialog.#callback(target.dataset.value);
