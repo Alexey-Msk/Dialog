@@ -1,4 +1,7 @@
-/** Диалоговое окно. */
+/**
+ * Диалоговое окно.
+ * @version 2024-01-29
+ */
 class Dialog {
 
 	static #isActive = false;
