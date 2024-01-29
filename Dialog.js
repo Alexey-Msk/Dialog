@@ -95,9 +95,11 @@ class Dialog {
 		let target = event.target;
 		if (target.closest("." + this.dialogClass)) {
 			if (target.tagName == "BUTTON" || target.matches("." + this.closeButtonClass)) {
+				let hide = true;
 				if (Dialog.#callback)
-					Dialog.#callback(target.dataset.value);
-				Dialog.hide();
+					hide = Dialog.#callback(target.dataset.value);
+				if (hide !== false)
+					Dialog.hide();
 			}
 		}
 		else if (!Dialog.#isModal)
