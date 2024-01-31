@@ -14,7 +14,7 @@
 	width: var(--width);
 	height: var(--height);
 	left: max(10px, calc(50vw - var(--width) / 2));
-	top: max(10px, calc(33vh - var(--height) / 2));
+	top: max(10px, calc(33vh - var(--height) / 3));
 	background-color: #444;
 	border: 1px solid black;
 	box-shadow: 0 0 7px black;
