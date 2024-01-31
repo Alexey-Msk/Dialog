@@ -23,15 +23,20 @@ class Dialog {
 	 * @param {string} id Значение атрибута id.
 	 * @param {boolean} modal Определяет, должен ли диалог быть модальным.
 	 * @param {string} content Содержимое диалога.
-	 * @param {?string} header Текст заголовка или null для создания диалога без заголовка.
-	 * @param {object} buttons Объект с данными кнопок в формате { значение: "надпись" }.
-	 * @param {Function} callback
+	 * @param {object} options Дополнительные параметры.
+	 * @param {?string} options.header Текст заголовка или null для создания диалога без заголовка.
+	 * @param {object} options.buttons Объект с данными кнопок в формате { значение: "надпись" }.
+	 * @param {Function} options.callback
 	 * Функция, вызываемая при нажатии одной из кнопок.
 	 * Единственным параметром в нее передается значение нажатой кнопки.
-	 * @param {number} width Ширина окна.
-	 * @param {number} height Высота окна.
+	 * @param {number} options.width Ширина окна.
+	 * @param {number} options.height Высота окна.
+	 * @param {number} options.maxWidth Максимальная ширина окна.
+	 * @param {number} options.maxHeight Максимальная высота окна.
 	 */
-	static show(id, modal, content, header, buttons, callback, width, height) {
+	static show(id, modal, content, options = {}) {
+		const { header, buttons, callback, width, height, maxWidth, maxHeight } = options;
+
 		if (typeof modal != "boolean")
 			throw new TypeError("Параметр modal должен быть типа boolean.");
 		if (buttons && typeof buttons != "object")
@@ -42,6 +47,10 @@ class Dialog {
 			throw new TypeError("Параметр width должен быть типа number.");
 		if (height && typeof height != "number")
 			throw new TypeError("Параметр height должен быть типа number.");
+		if (maxWidth && typeof maxWidth != "number")
+			throw new TypeError("Параметр maxWidth должен быть типа number.");
+		if (maxHeight && typeof maxHeight != "number")
+			throw new TypeError("Параметр maxHeight должен быть типа number.");
 
 		if (this.#isActive) {
 			console.log("Диалог уже открыт.");
@@ -65,11 +74,19 @@ class Dialog {
 		}
 
 		if (width || height) {
-			let styles= [];
+			let styles = [];
 			if (width)
-				styles.push(`--width: ${width}px;`);
+				styles.push(`--width: ${width}px; width: ${width}px;`);
 			if (height)
-				styles.push(`--height: ${height}px;`);
+				styles.push(`--height: ${height}px; height: ${height}px;`);
+			styleCode = ` style="${styles.join(" ")}"`;
+		}
+		else if (maxWidth || maxHeight) {
+			let styles = [];
+			if (maxWidth)
+				styles.push(`--max-width: ${maxWidth}px;`);
+			if (maxHeight)
+				styles.push(`--max-height: ${maxHeight}px;`);
 			styleCode = ` style="${styles.join(" ")}"`;
 		}
 
@@ -79,6 +96,14 @@ class Dialog {
 			html = `<div class="${this.modalBlockerClass}">${html}</div>`;
 
 		document.body.insertAdjacentHTML("beforeend", html);
+
+		if (!width && !height) {
+			let element = document.body.lastElementChild;
+			if (modal)
+				element = element.firstElementChild;
+			element.style.cssText += `--width: ${element.offsetWidth}px; --height: ${element.offsetHeight}px`;
+		}
+
 		setTimeout(() => document.addEventListener("click", this.#documentClickHandler), 0);
 		this.#isActive = true;
 	}
