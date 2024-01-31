@@ -3,6 +3,7 @@
  * @version 2024-01-31
  */
 class Dialog {
+// export default class Dialog {
 
 	static #isActive = false;
 	static #isModal = false;
