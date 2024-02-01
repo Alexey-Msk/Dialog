@@ -19,6 +19,9 @@ class Dialog {
 		closeButton: "closeButton",
 	};
 
+	/** Минимальная высота содержимого по умолчанию. */
+	static minContentHeight = 30;
+
 	/** Возвращает логическое значение, указывающее, открыт ли диалог в данный момент. */
 	static get isActive() {
 		return this.#isActive;
@@ -39,9 +42,10 @@ class Dialog {
 	 * @param {number} options.height Высота окна.
 	 * @param {number} options.maxWidth Максимальная ширина окна.
 	 * @param {number} options.maxHeight Максимальная высота окна.
+	 * @param {number} options.minContentHeight Минимальная высота содержимого.
 	 */
 	static show(id, modal, content, options = {}) {
-		const { header, buttons, callback, width, height, maxWidth, maxHeight } = options;
+		const { header, buttons, callback, width, height, maxWidth, maxHeight, minContentHeight = this.minContentHeight } = options;
 
 		if (typeof modal != "boolean")
 			throw new TypeError("Параметр modal должен быть типа boolean.");
@@ -57,6 +61,8 @@ class Dialog {
 			throw new TypeError("Параметр maxWidth должен быть типа number.");
 		if (maxHeight && typeof maxHeight != "number")
 			throw new TypeError("Параметр maxHeight должен быть типа number.");
+		if (typeof minContentHeight != "number")
+			throw new TypeError("Параметр minContentHeight должен быть типа number.");
 
 		if (this.#isActive) {
 			console.log("Диалог уже открыт.");
@@ -111,7 +117,10 @@ class Dialog {
 			let element = document.body.lastElementChild;
 			if (modal)
 				element = element.firstElementChild;
-			element.style.cssText += `--width: ${element.offsetWidth}px; --height: ${element.offsetHeight}px`;
+			const headerHeight = element.querySelector("." + this.classNames.header)?.offsetHeight;
+			const controlsHeight = element.querySelector("." + this.classNames.buttonsContainer)?.offsetHeight;
+			const minHeight = minContentHeight + (headerHeight ?? 0) + (controlsHeight ?? 0);
+			element.style.cssText += `--width: ${element.offsetWidth}px; --height: ${element.offsetHeight}px; min-height: ${minHeight}px;`;
 		}
 
 		setTimeout(() => document.addEventListener("click", this.#documentClickHandler), 0);
