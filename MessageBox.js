@@ -4,9 +4,9 @@
  * Окно сообщения.
  * @version 2024-01-31
  */
-class MessageBox {
-// export default class MessageBox {
-
+class MessageBox
+// export default class MessageBox
+{
     static elementId = "messageBox";
     static defaultMaxWidth = 600;
     static #dialog = null;
@@ -19,14 +19,16 @@ class MessageBox {
      * @param {number} maxWidth - Максимальная ширина диалога.
      * @returns Объект `Promise`, завершающийся после нажатия любой из кнопок диалога.
      */
-    static show(content, header, buttons = { ok: "OK" }, maxWidth = this.defaultMaxWidth) {
+    static show(content, header, buttons = { ok: "OK" }, maxWidth = this.defaultMaxWidth)
+    {
         return new Promise(resolve =>
             this.#dialog = Dialog.showNew(this.elementId, true, content, { header, buttons, maxWidth, callback: resolve })
         );
     }
 
     /** Закрывает окно сообщения. */
-    static hide() {
+    static hide()
+    {
         this.#dialog.hide();
     }
 }

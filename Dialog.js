@@ -2,9 +2,9 @@
  * Диалоговое окно.
  * @version 2024-02-01
  */
-class Dialog {
-// export default class Dialog {
-
+class Dialog
+// export default class Dialog
+{
 	#visible = false;
 	#isModal = false;
 	#callback = null;
@@ -26,12 +26,14 @@ class Dialog {
 	static minContentHeight = 30;
 
 	/** Возвращает логическое значение, указывающее, открыт ли диалог в данный момент. */
-	get visible() {
+	get visible()
+	{
 		return this.#visible;
 	}
 
 	/** Возвращает DOM-элемент диалога. */
-	get element() {
+	get element()
+	{
 		return this.#element;
 	}
 
@@ -52,7 +54,8 @@ class Dialog {
 	 * @param {number} options.maxHeight - Максимальная высота окна.
 	 * @param {number} options.minContentHeight - Минимальная высота содержимого.
 	 */
-	show(id, modal, content, options = {}) {
+	show(id, modal, content, options = {})
+	{
 		const { header, buttons, callback, width, height, maxWidth, maxHeight, minContentHeight = Dialog.minContentHeight } = options;
 
 		if (typeof modal != "boolean")
@@ -184,21 +187,24 @@ class Dialog {
 	 * @param {number} options.minContentHeight - Минимальная высота содержимого.
 	 * @returns {Dialog} Созданный объект класса `Dialog`.
 	 */
-	static showNew(id, modal, content, options = {}) {
+	static showNew(id, modal, content, options = {})
+	{
 		const dialog = new Dialog();
 		dialog.show(id, modal, content, options);
 		return dialog;
 	}
 
 	/** Закрывает диалог. */
-	hide() {
+	hide()
+	{
 		if (!this.#visible) return;
 		(this.#isModal ? this.#element.parentElement : this.#element).remove();
 		// document.removeEventListener("click", this.#clickHandler);
 		this.#visible = false;
 	}
 
-	#clickHandler = (event) => {
+	#clickHandler = (event) =>
+	{
 		let target = event.target;
 		if (target.closest("." + Dialog.classNames.dialog)) {
 			if (target.tagName == "BUTTON" || target.matches("." + Dialog.classNames.closeButton)) {
