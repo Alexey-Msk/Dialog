@@ -19,14 +19,16 @@
 	max-height: min(calc(100vh - 20px), var(--max-height));
 	left: max(10px, calc((100vw - var(--width)) / 2));
 	top: max(10px, calc((100vh - var(--height)) / 3));
-	background-color: #444;
+	background-color: #888;
 	border: 1px solid black;
+	border-radius: 3px;
 	box-shadow: 0 0 7px black;
 	font-size: 11pt;
 	z-index: 9000;
 }
 
 .myDialog > .header {
+	background-color: #555;
 	padding: 5px;
 	display: flex;
 	justify-content: space-between;
@@ -34,6 +36,14 @@
 
 .myDialog .closeButton svg {
 	pointer-events: none;
+}
+
+.myDialog .closeButton:hover {
+	fill: #333;
+}
+
+.myDialog .closeButton:active {
+	fill: #222;
 }
 
 .myDialog > .content {
@@ -54,4 +64,12 @@
 	border: 1px solid black;
 	border-radius: 3px;
 	width: 100px;
+}
+
+.myDialog button:hover {
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+.myDialog button:active {
+	background-color: rgba(255, 255, 255, 0.8);
 }
