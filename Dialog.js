@@ -37,20 +37,20 @@ class Dialog {
 
 	/**
 	 * Показывает диалог.
-	 * @param {?string} id Значение атрибута id.
-	 * @param {boolean} modal Определяет, должен ли диалог быть модальным.
-	 * @param {string} content Содержимое диалога.
-	 * @param {object} options Дополнительные параметры.
-	 * @param {?string} options.header Текст заголовка или null для создания диалога без заголовка.
-	 * @param {object} options.buttons Объект с данными кнопок в формате { значение: "надпись" }.
+	 * @param {?string} id - Значение атрибута id.
+	 * @param {boolean} modal - Определяет, должен ли диалог быть модальным.
+	 * @param {string} content - Содержимое диалога.
+	 * @param {object} options - Дополнительные параметры.
+	 * @param {?string} options.header - Текст заголовка или null для создания диалога без заголовка.
+	 * @param {object} options.buttons - Объект с данными кнопок в формате { значение: "надпись" }.
 	 * @param {Function} options.callback
 	 * Функция, вызываемая при нажатии одной из кнопок.
 	 * Единственным параметром в нее передается значение нажатой кнопки.
-	 * @param {number} options.width Ширина окна.
-	 * @param {number} options.height Высота окна.
-	 * @param {number} options.maxWidth Максимальная ширина окна.
-	 * @param {number} options.maxHeight Максимальная высота окна.
-	 * @param {number} options.minContentHeight Минимальная высота содержимого.
+	 * @param {number} options.width - Ширина окна.
+	 * @param {number} options.height - Высота окна.
+	 * @param {number} options.maxWidth - Максимальная ширина окна.
+	 * @param {number} options.maxHeight - Максимальная высота окна.
+	 * @param {number} options.minContentHeight - Минимальная высота содержимого.
 	 */
 	show(id, modal, content, options = {}) {
 		const { header, buttons, callback, width, height, maxWidth, maxHeight, minContentHeight = Dialog.minContentHeight } = options;
@@ -168,20 +168,20 @@ class Dialog {
 
 	/**
 	 * Показывает новый диалог.
-	 * @param {?string} id Значение атрибута id.
-	 * @param {boolean} modal Определяет, должен ли диалог быть модальным.
-	 * @param {string} content Содержимое диалога.
-	 * @param {object} options Дополнительные параметры.
-	 * @param {?string} options.header Текст заголовка или null для создания диалога без заголовка.
-	 * @param {object} options.buttons Объект с данными кнопок в формате { значение: "надпись" }.
+	 * @param {?string} id - Значение атрибута id.
+	 * @param {boolean} modal - Определяет, должен ли диалог быть модальным.
+	 * @param {string} content - Содержимое диалога.
+	 * @param {object} options - Дополнительные параметры.
+	 * @param {?string} options.header - Текст заголовка или null для создания диалога без заголовка.
+	 * @param {object} options.buttons - Объект с данными кнопок в формате { значение: "надпись" }.
 	 * @param {Function} options.callback
 	 * Функция, вызываемая при нажатии одной из кнопок.
 	 * Единственным параметром в нее передается значение нажатой кнопки.
-	 * @param {number} options.width Ширина окна.
-	 * @param {number} options.height Высота окна.
-	 * @param {number} options.maxWidth Максимальная ширина окна.
-	 * @param {number} options.maxHeight Максимальная высота окна.
-	 * @param {number} options.minContentHeight Минимальная высота содержимого.
+	 * @param {number} options.width - Ширина окна.
+	 * @param {number} options.height - Высота окна.
+	 * @param {number} options.maxWidth - Максимальная ширина окна.
+	 * @param {number} options.maxHeight - Максимальная высота окна.
+	 * @param {number} options.minContentHeight - Минимальная высота содержимого.
 	 * @returns {Dialog} Созданный объект класса `Dialog`.
 	 */
 	static showNew(id, modal, content, options = {}) {

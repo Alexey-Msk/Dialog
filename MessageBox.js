@@ -13,10 +13,10 @@ class MessageBox {
 
     /**
      * Показывает сообщение.
-     * @param {string} content Содержимое: строка или HTML-код.
-     * @param {?string} header Текст заголовка или null для отображения сообщения без заголовка.
-     * @param {object} buttons Объект с данными кнопок в формате { значение: "надпись" }.
-     * @param {number} maxWidth Максимальная ширина диалога.
+     * @param {string} content - Содержимое: строка или HTML-код.
+     * @param {?string} header - Текст заголовка или null для отображения сообщения без заголовка.
+     * @param {object} buttons - Объект с данными кнопок в формате { значение: "надпись" }.
+     * @param {number} maxWidth - Максимальная ширина диалога.
      * @returns Объект `Promise`, завершающийся после нажатия любой из кнопок диалога.
      */
     static show(content, header, buttons = { ok: "OK" }, maxWidth = this.defaultMaxWidth) {
