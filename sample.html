@@ -9,7 +9,7 @@
     <script>
         function showDialog1()
         {
-            Dialog.show("dialog1", true, "Вы действительно хотите покинуть страницу?", {
+            new Dialog().show("dialog1", true, "Вы действительно хотите покинуть страницу?", {
                 header: "Подтверждение",
                 buttons: { yes: "Да", no: "Нет" },
             });
@@ -26,7 +26,7 @@
 <p>Vestibulum sed nibh leo. Maecenas mollis cursus elementum. Praesent at mauris non lacus aliquam aliquet. Vivamus magna tortor, blandit ac consequat eget, volutpat eget sem. Mauris sed tortor non ipsum lobortis viverra interdum id massa. Aenean eu purus erat. Cras elementum urna ac est venenatis tincidunt.</p>
 <p>Integer posuere augue eget ligula accumsan, nec varius diam lacinia. Cras non tortor at mi rutrum ornare. In hac habitasse platea dictumst. Etiam sed urna porta, dapibus nisl vitae, congue dui. Nunc consectetur arcu eget arcu semper vulputate. Cras a interdum tellus. Nam non luctus enim, quis dictum quam. Nunc non porta ex. Donec egestas leo eu scelerisque malesuada. Sed vitae tortor et ipsum facilisis volutpat sed eu lectus. In tristique dui non lectus viverra, quis posuere enim tincidunt. Nulla nec ultricies nibh. Nunc quis feugiat velit.</p>`;
 
-            Dialog.show("dialog2", true, message, {
+            new Dialog().show("dialog2", true, message, {
                 header: "Lorem ipsum",
                 buttons: { ok: "OK", cancel: "Отмена" },
                 maxWidth: 900,
@@ -36,7 +36,7 @@
 
         function showDialog3()
         {
-            Dialog.show(null, true, "Редактируемый документ был изменен.<br>Желаете сохранить его перед выходом?", {
+            new Dialog().show(null, true, "Редактируемый документ был изменен.<br>Желаете сохранить его перед выходом?", {
                 header: "Подтверждение",
                 buttons: {
                     preview: "Просмотр",
@@ -44,6 +44,17 @@
                     print: "Печать",
                     exit: "Выход",
                     cancel: "Отмена",
+                },
+                callback: e => {
+                    if (e == "preview") {
+                        const message = "Lorem ipsum dolor sit amet.";
+                        // const message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales lectus vitae massa semper, ut porttitor erat molestie. Sed bibendum convallis fringilla. Vivamus convallis varius varius. Vestibulum finibus nisl laoreet ultricies rhoncus. Cras aliquam arcu sit amet sem tristique efficitur. Nam sodales, diam nec tempor condimentum, leo nulla consectetur purus, mattis efficitur lacus velit id justo. Mauris vitae fringilla ante. Fusce ex quam, interdum sit amet eros et, malesuada sodales arcu. Sed ullamcorper risus eros, id condimentum massa aliquet vitae. Sed sem magna, feugiat placerat mauris at, viverra viverra urna. Nulla dapibus sollicitudin enim aliquam molestie. Duis efficitur leo ac pulvinar semper. Nullam facilisis leo eget velit facilisis, maximus eleifend nisl imperdiet. Nulla laoreet faucibus purus vel hendrerit. Suspendisse potenti. Suspendisse lacinia lacus at nisi tempor, a commodo tellus pulvinar.";
+                        new Dialog().show("previewDialog", true, message, {
+                            header: "Предпросмотр",
+                            buttons: { ok: "OK" },
+                        });
+                        return false;
+                    }
                 },
             });
         }
