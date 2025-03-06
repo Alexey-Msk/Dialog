@@ -36,6 +36,29 @@
 
         function showDialog3()
         {
+            const callback2 = e => {
+                if (e == "more") {
+                    new Dialog().show("previewDialog2", true, "Lorem ipsum", {
+                        header: "Предпросмотр",
+                        buttons: { ok: "OK" },
+                    });
+                    return false;
+                }
+            };
+
+            const callback1 = e => {
+                if (e == "preview") {
+                    const message = "Lorem ipsum dolor sit amet.";
+                    // const message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales lectus vitae massa semper, ut porttitor erat molestie. Sed bibendum convallis fringilla. Vivamus convallis varius varius. Vestibulum finibus nisl laoreet ultricies rhoncus. Cras aliquam arcu sit amet sem tristique efficitur. Nam sodales, diam nec tempor condimentum, leo nulla consectetur purus, mattis efficitur lacus velit id justo. Mauris vitae fringilla ante. Fusce ex quam, interdum sit amet eros et, malesuada sodales arcu. Sed ullamcorper risus eros, id condimentum massa aliquet vitae. Sed sem magna, feugiat placerat mauris at, viverra viverra urna. Nulla dapibus sollicitudin enim aliquam molestie. Duis efficitur leo ac pulvinar semper. Nullam facilisis leo eget velit facilisis, maximus eleifend nisl imperdiet. Nulla laoreet faucibus purus vel hendrerit. Suspendisse potenti. Suspendisse lacinia lacus at nisi tempor, a commodo tellus pulvinar.";
+                    new Dialog().show("previewDialog", true, message, {
+                        header: "Предпросмотр",
+                        buttons: { ok: "OK", more: "Еще" },
+                        callback: callback2
+                    });
+                    return false;
+                }
+            };
+
             new Dialog().show(null, true, "Редактируемый документ был изменен.<br>Желаете сохранить его перед выходом?", {
                 header: "Подтверждение",
                 buttons: {
@@ -45,26 +68,7 @@
                     exit: "Выход",
                     cancel: "Отмена",
                 },
-                callback: e => {
-                    if (e == "preview") {
-                        const message = "Lorem ipsum dolor sit amet.";
-                        // const message = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales lectus vitae massa semper, ut porttitor erat molestie. Sed bibendum convallis fringilla. Vivamus convallis varius varius. Vestibulum finibus nisl laoreet ultricies rhoncus. Cras aliquam arcu sit amet sem tristique efficitur. Nam sodales, diam nec tempor condimentum, leo nulla consectetur purus, mattis efficitur lacus velit id justo. Mauris vitae fringilla ante. Fusce ex quam, interdum sit amet eros et, malesuada sodales arcu. Sed ullamcorper risus eros, id condimentum massa aliquet vitae. Sed sem magna, feugiat placerat mauris at, viverra viverra urna. Nulla dapibus sollicitudin enim aliquam molestie. Duis efficitur leo ac pulvinar semper. Nullam facilisis leo eget velit facilisis, maximus eleifend nisl imperdiet. Nulla laoreet faucibus purus vel hendrerit. Suspendisse potenti. Suspendisse lacinia lacus at nisi tempor, a commodo tellus pulvinar.";
-                        new Dialog().show("previewDialog", true, message, {
-                            header: "Предпросмотр",
-                            buttons: { ok: "OK", more: "Еще" },
-                            callback: e => {
-                                if (e == "more") {
-                                    new Dialog().show("previewDialog2", true, "Lorem ipsum", {
-                                        header: "Предпросмотр",
-                                        buttons: { ok: "OK" },
-                                    });
-                                    return false;
-                                }
-                            }
-                        });
-                        return false;
-                    }
-                },
+                callback: callback1
             });
         }
     </script>
