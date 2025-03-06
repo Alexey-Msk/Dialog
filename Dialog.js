@@ -1,6 +1,6 @@
 /**
  * Диалоговое окно.
- * @version 2024-02-01
+ * @version 2025-03-07
  */
 class Dialog
 // export default class Dialog

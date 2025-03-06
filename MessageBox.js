@@ -2,7 +2,7 @@
 
 /**
  * Окно сообщения.
- * @version 2024-01-31
+ * @version 2025-03-07
  */
 class MessageBox
 // export default class MessageBox
