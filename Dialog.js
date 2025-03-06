@@ -159,7 +159,10 @@ class Dialog
 			const buttonsContainer = container.getElementsByClassName(Dialog.classNames.buttonsContainer).item(0);
 			const closeButton = container.getElementsByClassName(Dialog.classNames.closeButton).item(0);
 			buttonsContainer?.addEventListener("click", this.#clickHandler);
-			closeButton?.addEventListener("click", this.#clickHandler);
+			if (closeButton) {
+				closeButton.onmousedown = e => false;
+				closeButton.addEventListener("click", this.#clickHandler);
+			}
 		}, 0);
 
 		this.#visible = true;
