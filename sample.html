@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dialog</title>
+    <link rel="stylesheet" href="Dialog.css">
+    <script src="Dialog.js"></script>
+    <script>
+        function showDialog1()
+        {
+            Dialog.show("dialog1", true, "Вы действительно хотите покинуть страницу?", {
+                header: "Подтверждение",
+                buttons: { yes: "Да", no: "Нет" },
+            });
+        }
+
+        function showDialog2()
+        {
+            const message =
+`<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales lectus vitae massa semper, ut porttitor erat molestie. Sed bibendum convallis fringilla. Vivamus convallis varius varius. Vestibulum finibus nisl laoreet ultricies rhoncus. Cras aliquam arcu sit amet sem tristique efficitur. Nam sodales, diam nec tempor condimentum, leo nulla consectetur purus, mattis efficitur lacus velit id justo. Mauris vitae fringilla ante. Fusce ex quam, interdum sit amet eros et, malesuada sodales arcu. Sed ullamcorper risus eros, id condimentum massa aliquet vitae. Sed sem magna, feugiat placerat mauris at, viverra viverra urna. Nulla dapibus sollicitudin enim aliquam molestie. Duis efficitur leo ac pulvinar semper. Nullam facilisis leo eget velit facilisis, maximus eleifend nisl imperdiet. Nulla laoreet faucibus purus vel hendrerit. Suspendisse potenti. Suspendisse lacinia lacus at nisi tempor, a commodo tellus pulvinar.</p>
+<p>Donec finibus eros sed eros fringilla dapibus. Suspendisse ac nulla vel nulla dapibus dapibus. Vivamus tempus ut eros at luctus. Donec eget aliquet leo, non tristique turpis. Vivamus luctus sed turpis sed mattis. Maecenas hendrerit ipsum massa, vitae sagittis tellus pulvinar eu. Quisque non turpis porttitor, vehicula magna eu, mattis odio. Curabitur a sollicitudin lorem. Fusce a bibendum lorem, vel malesuada leo. Fusce ac enim ut nunc blandit sagittis vel aliquet ipsum. In ac accumsan purus, non posuere mi. Aliquam blandit sit amet ipsum eget fringilla. Donec ut vehicula odio.</p>
+<p>Suspendisse mattis augue nec leo elementum molestie. Maecenas porttitor odio quis mi aliquam volutpat. Integer ac leo fermentum quam fermentum egestas vitae quis tortor. Nulla a magna posuere, condimentum nulla eu, consectetur enim. Etiam a elit lorem. Fusce justo sapien, volutpat at urna nec, tincidunt ultricies tellus. Curabitur imperdiet quis odio sit amet tincidunt. Aliquam eleifend vel lorem quis semper. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas ac neque nulla. Suspendisse eros est, maximus quis sapien congue, congue posuere ipsum. Suspendisse luctus mauris a commodo eleifend. Suspendisse potenti. Sed nec varius justo, non sagittis enim. Cras vel nunc nulla. Aenean luctus ex eget odio tincidunt, vel vestibulum tortor lobortis.</p>
+<p>Cras ornare aliquam justo quis hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec consectetur neque eu arcu tincidunt ultricies. Nulla eleifend urna quis mi pretium, quis scelerisque nisi vestibulum. Fusce porta leo quis bibendum lobortis. Duis sollicitudin diam ut nisl vulputate, sed vestibulum turpis pharetra. Etiam imperdiet elementum dui a bibendum. Donec et tincidunt nisl. Nunc dignissim, ante sodales bibendum auctor, mauris magna sagittis velit, eu aliquet lacus leo quis nunc.</p>
+<p>Aliquam congue ex eget varius elementum. Fusce vel mi laoreet, commodo ex vel, porta nulla. Sed semper felis eget nisi ullamcorper efficitur in vitae mi. Sed eget nibh ligula. Sed sodales erat eu pharetra porttitor. Nam maximus ut arcu ac posuere. Etiam vitae est eu magna gravida euismod in a ex. Vestibulum ultrices ipsum sit amet eros mattis tristique. Duis sed pretium massa. Aliquam scelerisque varius velit eget tincidunt.</p>
+<p>Vestibulum sed nibh leo. Maecenas mollis cursus elementum. Praesent at mauris non lacus aliquam aliquet. Vivamus magna tortor, blandit ac consequat eget, volutpat eget sem. Mauris sed tortor non ipsum lobortis viverra interdum id massa. Aenean eu purus erat. Cras elementum urna ac est venenatis tincidunt.</p>
+<p>Integer posuere augue eget ligula accumsan, nec varius diam lacinia. Cras non tortor at mi rutrum ornare. In hac habitasse platea dictumst. Etiam sed urna porta, dapibus nisl vitae, congue dui. Nunc consectetur arcu eget arcu semper vulputate. Cras a interdum tellus. Nam non luctus enim, quis dictum quam. Nunc non porta ex. Donec egestas leo eu scelerisque malesuada. Sed vitae tortor et ipsum facilisis volutpat sed eu lectus. In tristique dui non lectus viverra, quis posuere enim tincidunt. Nulla nec ultricies nibh. Nunc quis feugiat velit.</p>`;
+
+            Dialog.show("dialog2", true, message, {
+                header: "Lorem ipsum",
+                buttons: { ok: "OK", cancel: "Отмена" },
+                maxWidth: 900,
+                maxHeight: 600,
+            });
+        }
+
+        function showDialog3()
+        {
+            Dialog.show("dialog3", true, "Редактируемый документ был изменен.<br>Желаете сохранить его перед выходом?", {
+                header: "Подтверждение",
+                buttons: {
+                    preview: "Просмотр",
+                    save: "Сохранить",
+                    print: "Печать",
+                    exit: "Выход",
+                    cancel: "Отмена",
+                },
+            });
+        }
+    </script>
+</head>
+<body>
+    <button onclick="showDialog1()">Показать диалог 1</button>
+    <br><br>
+    <button onclick="showDialog2()">Показать диалог 2</button>
+    <br><br>
+    <button onclick="showDialog3()">Показать диалог 3</button>
+</body>
+</html>
