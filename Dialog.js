@@ -5,7 +5,7 @@
 class Dialog {
 // export default class Dialog {
 
-	#isActive = false;
+	#visible = false;
 	#isModal = false;
 	#callback = null;
 	#element = null;
@@ -24,8 +24,8 @@ class Dialog {
 	static minContentHeight = 30;
 
 	/** Возвращает логическое значение, указывающее, открыт ли диалог в данный момент. */
-	get isActive() {
-		return this.#isActive;
+	get visible() {
+		return this.#visible;
 	}
 
 	/** Возвращает DOM-элемент диалога. */
@@ -70,7 +70,7 @@ class Dialog {
 		if (typeof minContentHeight != "number")
 			throw new TypeError("Параметр minContentHeight должен быть типа number.");
 
-		if (this.#isActive) {
+		if (this.#visible) {
 			console.log("Диалог уже открыт.");
 			return;
 		}
@@ -157,15 +157,15 @@ class Dialog {
 			closeButton?.addEventListener("click", this.#clickHandler);
 		}, 0);
 
-		this.#isActive = true;
+		this.#visible = true;
 	}
 
 	/** Закрывает диалог. */
 	hide() {
-		if (!this.#isActive) return;
+		if (!this.#visible) return;
 		(this.#isModal ? this.#element.parentElement : this.#element).remove();
 		// document.removeEventListener("click", this.#clickHandler);
-		this.#isActive = false;
+		this.#visible = false;
 	}
 
 	#clickHandler = (event) => {
