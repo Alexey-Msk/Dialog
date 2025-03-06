@@ -40,6 +40,10 @@
 	justify-content: space-between;
 }
 
+.myDialog.inactive .header {
+	background-color: #444;
+}
+
 .myDialog .closeButton svg {
 	pointer-events: none;
 }

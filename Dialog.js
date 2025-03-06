@@ -9,6 +9,8 @@ class Dialog {
 	#isModal = false;
 	#callback = null;
 	#element = null;
+	/** Массив открытых диалогов. */
+	static #openedDialogs = [];
 
 	/** Используемые имена классов. */
 	static classNames = {
@@ -158,6 +160,10 @@ class Dialog {
 		}, 0);
 
 		this.#visible = true;
+		
+		if (Dialog.#openedDialogs.length > 0)
+			Dialog.#openedDialogs.at(-1).classList.add("inactive");
+		Dialog.#openedDialogs.push(this.#element);
 	}
 
 	/** Закрывает диалог. */
@@ -175,8 +181,13 @@ class Dialog {
 				let hide = true;
 				if (this.#callback)
 					hide = this.#callback(target.dataset.value);
-				if (hide !== false)
+				if (hide !== false) {
 					this.hide();
+					Dialog.#openedDialogs.splice(Dialog.#openedDialogs.indexOf(this.#element), 1);
+					if (Dialog.#openedDialogs.length > 0)
+						Dialog.#openedDialogs.at(-1).classList.remove("inactive");
+				}
+					
 			}
 		}
 		else if (!this.#isModal)
