@@ -17,8 +17,8 @@
 	box-sizing: border-box;
 	max-width: min(calc(100vw - 20px), var(--max-width));
 	max-height: min(calc(100vh - 20px), var(--max-height));
-	left: max(10px, calc((100vw - var(--width)) / 2);
-	top: max(10px, calc((100vh - var(--height)) / 3);
+	left: max(10px, calc((100vw - var(--width)) / 2));
+	top: max(10px, calc((100vh - var(--height)) / 3));
 	background-color: #444;
 	border: 1px solid black;
 	box-shadow: 0 0 7px black;
@@ -28,6 +28,12 @@
 
 .myDialog > .header {
 	padding: 5px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.myDialog .closeButton svg {
+	pointer-events: none;
 }
 
 .myDialog > .content {
