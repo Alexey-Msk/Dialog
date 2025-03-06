@@ -29,7 +29,7 @@ class Dialog {
 
 	/**
 	 * Показывает диалог.
-	 * @param {string} id Значение атрибута id.
+	 * @param {?string} id Значение атрибута id.
 	 * @param {boolean} modal Определяет, должен ли диалог быть модальным.
 	 * @param {string} content Содержимое диалога.
 	 * @param {object} options Дополнительные параметры.
