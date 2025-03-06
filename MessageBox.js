@@ -9,6 +9,7 @@ class MessageBox {
 
     static elementId = "messageBox";
     static defaultMaxWidth = 600;
+    static #dialog = null;
 
     /**
      * Показывает сообщение.
@@ -20,12 +21,12 @@ class MessageBox {
      */
     static show(content, header, buttons = { ok: "OK" }, maxWidth = this.defaultMaxWidth) {
         return new Promise(resolve =>
-            Dialog.show(this.elementId, true, content, { header, buttons, maxWidth, callback: resolve })
+            this.#dialog = Dialog.showNew(this.elementId, true, content, { header, buttons, maxWidth, callback: resolve })
         );
     }
 
     /** Закрывает окно сообщения. */
     static hide() {
-        Dialog.hide();
+        this.#dialog.hide();
     }
 }
