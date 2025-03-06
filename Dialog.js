@@ -104,24 +104,44 @@ class Dialog {
 
 		let idAttr = id ? `id="${id}"` : "";
 		let html = `<div ${idAttr} class="${this.classNames.dialog}"${styleCode}>
-						${headerCode}
-						<div class="${this.classNames.content}">${content}</div>
-						${buttonsCode}
+						<div>
+							${headerCode}
+							<div class="${this.classNames.content}">${content}</div>
+							${buttonsCode}
+						</div>
 					</div>`;
 		if (modal)
 			html = `<div class="${this.classNames.modalBlocker}">${html}</div>`;
 
 		document.body.insertAdjacentHTML("beforeend", html);
 
-		if (!width && !height) {
-			let element = document.body.lastElementChild;
-			if (modal)
-				element = element.firstElementChild;
-			const headerHeight = element.querySelector("." + this.classNames.header)?.offsetHeight;
-			const controlsHeight = element.querySelector("." + this.classNames.buttonsContainer)?.offsetHeight;
-			const minHeight = minContentHeight + (headerHeight ?? 0) + (controlsHeight ?? 0);
-			element.style.cssText += `--width: ${element.offsetWidth}px; --height: ${element.offsetHeight}px; min-height: ${minHeight}px;`;
+		let element = document.body.lastElementChild;
+		if (modal)
+			element = element.firstElementChild;
+		const container = element.firstElementChild;
+		// container.style.maxHeight = element.clientHeight + "px";
+
+		const updateSizeVariables = () => {
+			element.style.setProperty("--width", container.offsetWidth + "px");
+			element.style.setProperty("--height", container.offsetHeight + "px");
 		}
+
+		const autoSize = !width && !height;
+		if (autoSize) {
+			// const headerHeight = element.querySelector("." + this.classNames.header)?.offsetHeight;
+			// const controlsHeight = element.querySelector("." + this.classNames.buttonsContainer)?.offsetHeight;
+			// const minHeight = minContentHeight + (headerHeight ?? 0) + (controlsHeight ?? 0);
+			// element.style.minHeight = minHeight + "px";
+			updateSizeVariables();
+		}
+
+		window.addEventListener("resize", e => {
+			// container.style.maxHeight = element.clientHeight + "px";
+			if (autoSize) {
+				// console.log(container.offsetWidth, container.offsetHeight);
+				updateSizeVariables();
+			}
+		});
 
 		setTimeout(() => document.addEventListener("click", this.#documentClickHandler), 0);
 		this.#isActive = true;
