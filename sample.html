@@ -6,12 +6,14 @@
     <title>Dialog</title>
     <link rel="stylesheet" href="Dialog.css">
     <script src="Dialog.js"></script>
+    <script src="MessageBox.js"></script>
     <script>
         function showDialog1()
         {
             new Dialog().show("dialog1", true, "Вы действительно хотите покинуть страницу?", {
                 header: "Подтверждение",
                 buttons: { yes: "Да", no: "Нет" },
+                callback: e => { if (e === "yes") window.close(); }
             });
         }
 
@@ -71,6 +73,13 @@
                 callback: callback1
             });
         }
+
+        function showMessageBox()
+        {
+            MessageBox.show("Вы действительно хотите покинуть страницу?", "Подтверждение",
+                            { yes: "Да", no: "Нет" })
+            .then(result => { if (result === "yes") window.close(); });
+        }
     </script>
 </head>
 <body>
@@ -79,5 +88,7 @@
     <button onclick="showDialog2()">Показать диалог 2</button>
     <br><br>
     <button onclick="showDialog3()">Показать диалог 3</button>
+    <br><br>
+    <button onclick="showMessageBox()">Показать диалог MessageBox</button>
 </body>
 </html>
